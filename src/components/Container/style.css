@@ -1,0 +1,19 @@
+.container {
+  background: var(--light-blue);
+
+  max-width: 1024px;
+
+  width: 50%;
+  height: 700px;
+
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 80%;
+    height: 100%;
+  }
+}

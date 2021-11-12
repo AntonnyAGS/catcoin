@@ -1,0 +1,20 @@
+.coin {
+  background: var(--dark-gold);
+
+  width: 120px;
+  height: 120px;
+
+  border-radius: 50%;
+
+  font-size: 2rem;
+  color: white;
+
+  border: none;
+
+  cursor: pointer;
+}
+
+.coin:hover {
+  width: 125px;
+  height: 125px;
+}
