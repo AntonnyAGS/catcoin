@@ -67,6 +67,7 @@ function App() {
     <div className="container-outer">
       <Container>
         <>
+          <div className="container-title">CatCoin</div>
           <div className="candies-container">{renderCandies()}</div>
           <div className="buttons-container">{renderCoins()}</div>
         </>

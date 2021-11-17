@@ -26,8 +26,7 @@ const Candy = ({
       disabled={!isEnabled}
       onClick={() => onPress(type)}
     >
-      {" "}
-      {label} - {price}CC
+      {price}CC
     </button>
   );
 };

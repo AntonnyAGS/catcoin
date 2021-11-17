@@ -1,6 +1,27 @@
 .candy {
-  width: 80px;
-  height: 80px;
+  width: 160px;
+  height: 77px;
+
+  border: none;
+
+  color: black;
+
+  font-size: 1.2rem;
 
   cursor: pointer;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+#candy-CandyA {
+  background-image: url('../../assets/doce-01.svg');
+}
+
+#candy-CandyB {
+  background-image: url('../../assets/doce-02.svg');
+}
+
+#candy-CandyC {
+  background-image: url('../../assets/doce-03.svg');
 }

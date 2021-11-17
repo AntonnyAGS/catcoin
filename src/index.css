@@ -30,6 +30,12 @@ body {
   align-items: center;
 }
 
+.container-title {
+  font-size: 2rem;
+
+  padding: var(--main-padding);
+}
+
 .container-outer {
   padding: var(--main-padding);
 
