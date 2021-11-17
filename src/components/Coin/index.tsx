@@ -1,15 +1,18 @@
 import React from "react";
+import { CoinType } from "../../entities/coin.enum";
 
 import "./style.css";
 
 interface CoinProps {
-  onPress: (value: number) => void;
+  onPress: (value: CoinType) => void;
   value: number;
   label: string;
+  coin: CoinType;
+  isActive: boolean;
 }
 
-const Coin = ({ onPress, value, label }: CoinProps): JSX.Element => (
-  <button className="coin" onClick={() => onPress(value)}>
+const Coin = ({ onPress, value, label, coin, isActive }: CoinProps): JSX.Element => (
+  <button className="coin" disabled={!isActive} onClick={() => onPress(coin)}>
     {label}
   </button>
 );

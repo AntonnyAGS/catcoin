@@ -1,9 +1,20 @@
-import React, { createContext, useState } from "react";
+import React, {
+  createContext,
+  useEffect,
+  useState,
+} from "react";
+import { CandyType } from "../entities/candy.enum";
+import { CoinType } from "../entities/coin.enum";
+import { CandiesPrice, CoinsValue } from "../utils";
 
 interface WorkManagerContextProps {
   amount: number;
-  addCoin(value: number): void;
-  buyCandy(price: number): void;
+  discount: number;
+  isDiscountVisible: boolean;
+  isBuying: boolean;
+  selectedCandy?: CandyType;
+  addCoin(coin: CoinType): void;
+  buyCandy(candy: CandyType): void;
 }
 
 export const WorkManagerContext = createContext<WorkManagerContextProps>(
@@ -16,21 +27,64 @@ export const WorkManagerProvider = ({
   children: JSX.Element;
 }): JSX.Element => {
   const [amount, setAmount] = useState(0);
+  const [discount, setDiscount] = useState(0);
 
-  const addCoin = (value: number) => {
-    const totalAmount = amount + value;
+  const [isDiscountVisible, setIsDiscountVisible] = useState(false);
+  const [isBuying, setIsBuying] = useState(false);
+  const [selectedCandy, setSelectedCandy] = useState<CandyType>();
+
+  const addCoin = (coin: CoinType) => {
+    const totalAmount = amount + CoinsValue[coin];
 
     setAmount(totalAmount);
   };
 
-  const buyCandy = (price: number) => {
-    const totalAmount = amount - price;
+  const buyCandy = (candy: CandyType) => {
+    setSelectedCandy(candy);
+    setIsBuying(true);
 
-    setAmount(totalAmount);
+    const totalAmount = amount - CandiesPrice[candy];
+
+    setDiscount(totalAmount);
+    setIsDiscountVisible(true);
+    setAmount(0);
   };
+
+
+  useEffect(() => {
+    if(selectedCandy) {
+      document.getElementById(`candy-${selectedCandy}`)?.classList.remove('animate__fadeIn');
+      document.getElementById(`candy-${selectedCandy}`)?.classList.add('animate__fadeOutDown');
+    }
+
+  }, [selectedCandy])
+
+  useEffect(() => {
+    if (!isDiscountVisible) {
+      return;
+    }
+
+    setTimeout(() => {
+      setIsDiscountVisible(false);
+      setIsBuying(false);
+      document.getElementById(`candy-${selectedCandy}`)?.classList.remove('animate__fadeOutDown');
+      document.getElementById(`candy-${selectedCandy}`)?.classList.add('animate__fadeIn');
+      setSelectedCandy(undefined);
+    }, 3000);
+  }, [isDiscountVisible, selectedCandy]);
 
   return (
-    <WorkManagerContext.Provider value={{ addCoin, amount, buyCandy }}>
+    <WorkManagerContext.Provider
+      value={{
+        addCoin,
+        amount,
+        buyCandy,
+        selectedCandy,
+        discount,
+        isDiscountVisible,
+        isBuying,
+      }}
+    >
       {children}
     </WorkManagerContext.Provider>
   );

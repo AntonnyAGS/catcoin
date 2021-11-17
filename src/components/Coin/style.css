@@ -1,20 +1,24 @@
 .coin {
-  background: var(--dark-gold);
-
-  width: 120px;
-  height: 120px;
+  width: 90px;
+  height: 102px;
 
   border-radius: 50%;
 
-  font-size: 2rem;
+  font-size: 1rem;
   color: white;
 
   border: none;
 
   cursor: pointer;
+
+  background-image: url('../../assets/moeda-1.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  font-weight: 600;
 }
 
 .coin:hover {
-  width: 125px;
-  height: 125px;
+  width: 95px;
+  height: 107px;
 }

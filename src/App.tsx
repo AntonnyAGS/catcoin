@@ -6,20 +6,21 @@ import { WorkManagerContext } from "./contexts/work-manager.context";
 import Coin from "./components/Coin";
 import Stats from "./components/Stats";
 import Container from "./components/Container";
+import Candy from "./components/Candy";
 import { CoinType } from "./entities/coin.enum";
 import { CandiesLabel, CandiesPrice, CoinsLabel, CoinsValue } from "./utils";
 import { CandyType } from "./entities/candy.enum";
-import Candy from "./components/Candy";
+import SideContainer from "./components/SideContainer";
 
 function App() {
-  const { addCoin, buyCandy, amount } = useContext(WorkManagerContext);
+  const { addCoin, buyCandy, amount, isDiscountVisible } = useContext(WorkManagerContext);
 
-  const handleAddCoin = (value: number) => {
-    addCoin(value);
+  const handleAddCoin = (coin: CoinType) => {
+    addCoin(coin);
   };
 
-  const handleBuyCandy = (price: number) => {
-    buyCandy(price);
+  const handleBuyCandy = (candy: CandyType) => {
+    buyCandy(candy);
   };
 
   const renderCoins = (): JSX.Element[] => {
@@ -29,6 +30,8 @@ function App() {
       return (
         <Coin
           key={coin}
+          isActive={!isDiscountVisible}
+          coin={coinType}
           onPress={handleAddCoin}
           value={CoinsValue[coinType]}
           label={CoinsLabel[coinType]}
@@ -52,6 +55,7 @@ function App() {
           key={candy}
           onPress={handleBuyCandy}
           price={price}
+          type={candyType}
           label={CandiesLabel[candyType]}
           isEnabled={canBuyCandy(price)}
         />
@@ -60,17 +64,21 @@ function App() {
   };
 
   return (
-    <Container>
-      <>
-        <div className="stats-container">
-          <Stats />
-        </div>
-        <div className="candies-container">
-          {renderCandies()}
-        </div>
-        <div className="buttons-container">{renderCoins()}</div>
-      </>
-    </Container>
+    <div className="container-outer">
+      <Container>
+        <>
+          <div className="candies-container">{renderCandies()}</div>
+          <div className="buttons-container">{renderCoins()}</div>
+        </>
+      </Container>
+      <SideContainer>
+        <>
+          <div className="stats-container">
+            <Stats />
+          </div>
+        </>
+      </SideContainer>
+    </div>
   );
 }
 

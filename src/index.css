@@ -1,7 +1,7 @@
 :root {
-  --primary-color: red;
-  --light-blue: #F0F8FF;
-  --dark-gold: #B8860B;
+  --primary-color: #FEA504;
+  --light-blue: #f0f8ff;
+  --dark-gold: #b8860b;
 
   --main-padding: 16px;
 }
@@ -16,19 +16,12 @@ body {
   width: 100vw;
   height: 100vh;
 
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Montagu Slab', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-#root{
+#root {
   height: 100%;
   width: 100%;
 
@@ -37,8 +30,42 @@ code {
   align-items: center;
 }
 
-.stats-container, .candies-container, .buttons-container {
+.container-outer {
   padding: var(--main-padding);
+
+  width: 100%;
+  height: 100%;
+
+  max-width: 1200px;
+  max-height: 800px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 30px;
+  gap: var(--main-padding);
+
+  background: var(--primary-color);
+}
+
+@media screen and (max-width: 768px) {
+  .container-outer {
+    min-height: 100%;
+    flex-direction: column-reverse;
+  }
+}
+
+.stats-container,
+.candies-container,
+.buttons-container {
+  padding: var(--main-padding);
+}
+
+.stats-container {
+  height: 10%;
+
+  min-height: 80px;
 }
 
 .candies-container {
@@ -55,7 +82,8 @@ code {
   display: flex;
 
   justify-content: center;
+  align-items: center;
   gap: var(--main-padding);
 
-  min-height: calc(125px + (2 * var(--main-padding)));
+  min-height: calc(120px + (2 * var(--main-padding)));
 }
