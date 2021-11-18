@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.86aa6419.chunk.css",
-    "main.js": "/static/js/main.acd2d2ac.chunk.js",
-    "main.js.map": "/static/js/main.acd2d2ac.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.2aa1b6c4.js",
-    "runtime-main.js.map": "/static/js/runtime-main.2aa1b6c4.js.map",
-    "static/js/2.f55401a1.chunk.js": "/static/js/2.f55401a1.chunk.js",
-    "static/js/2.f55401a1.chunk.js.map": "/static/js/2.f55401a1.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/main.86aa6419.chunk.css.map": "/static/css/main.86aa6419.chunk.css.map",
-    "static/js/2.f55401a1.chunk.js.LICENSE.txt": "/static/js/2.f55401a1.chunk.js.LICENSE.txt",
-    "static/media/cat-happy.4f7002c1.svg": "/static/media/cat-happy.4f7002c1.svg",
-    "static/media/cat-sad.8b84d25a.svg": "/static/media/cat-sad.8b84d25a.svg",
-    "static/media/cat.837b022f.svg": "/static/media/cat.837b022f.svg",
-    "static/media/style.css": "/static/media/moeda-prata.0a29e174.svg"
+    "main.css": "/catcoin/static/css/main.85463e60.chunk.css",
+    "main.js": "/catcoin/static/js/main.acd2d2ac.chunk.js",
+    "main.js.map": "/catcoin/static/js/main.acd2d2ac.chunk.js.map",
+    "runtime-main.js": "/catcoin/static/js/runtime-main.af827c42.js",
+    "runtime-main.js.map": "/catcoin/static/js/runtime-main.af827c42.js.map",
+    "static/js/2.f55401a1.chunk.js": "/catcoin/static/js/2.f55401a1.chunk.js",
+    "static/js/2.f55401a1.chunk.js.map": "/catcoin/static/js/2.f55401a1.chunk.js.map",
+    "index.html": "/catcoin/index.html",
+    "static/css/main.85463e60.chunk.css.map": "/catcoin/static/css/main.85463e60.chunk.css.map",
+    "static/js/2.f55401a1.chunk.js.LICENSE.txt": "/catcoin/static/js/2.f55401a1.chunk.js.LICENSE.txt",
+    "static/media/cat-happy.4f7002c1.svg": "/catcoin/static/media/cat-happy.4f7002c1.svg",
+    "static/media/cat-sad.8b84d25a.svg": "/catcoin/static/media/cat-sad.8b84d25a.svg",
+    "static/media/cat.837b022f.svg": "/catcoin/static/media/cat.837b022f.svg",
+    "static/media/style.css": "/catcoin/static/media/moeda-prata.0a29e174.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.2aa1b6c4.js",
+    "static/js/runtime-main.af827c42.js",
     "static/js/2.f55401a1.chunk.js",
-    "static/css/main.86aa6419.chunk.css",
+    "static/css/main.85463e60.chunk.css",
     "static/js/main.acd2d2ac.chunk.js"
   ]
 }
