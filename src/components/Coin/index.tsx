@@ -12,7 +12,7 @@ interface CoinProps {
 }
 
 const Coin = ({ onPress, value, label, coin, isActive }: CoinProps): JSX.Element => (
-  <button className="coin" disabled={!isActive} onClick={() => onPress(coin)}>
+  <button className="coin" id={`coin-${coin}`} disabled={!isActive} onClick={() => onPress(coin)}>
     {label}
   </button>
 );

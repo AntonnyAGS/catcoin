@@ -1,6 +1,6 @@
 .candy {
-  width: 160px;
-  height: 77px;
+  width: 170px;
+  height: 85px;
 
   border: none;
 
@@ -12,6 +12,8 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+
+  background-color: white;
 }
 
 #candy-CandyA {
@@ -24,4 +26,10 @@
 
 #candy-CandyC {
   background-image: url('../../assets/doce-03.svg');
+}
+
+.candy:disabled {
+  cursor: default;
+
+  background-image: url('../../assets/doce-disable.svg') !important;
 }
