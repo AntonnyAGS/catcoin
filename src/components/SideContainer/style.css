@@ -4,13 +4,16 @@
   max-width: 1024px;
 
   width: 50%;
-  height: 700px;
+  min-height: 500px;
 
   display: flex;
   flex-direction: column;
   flex: 1;
 
   border-radius: 15px;
+  border: 5px solid grey;
+
+  background: white;
 }
 
 @media (max-width: 768px) {
