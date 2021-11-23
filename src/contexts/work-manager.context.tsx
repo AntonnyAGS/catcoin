@@ -34,7 +34,8 @@ interface WorkManagerContextProps {
   isDiscountVisible: boolean;
   isBuying: boolean;
   selectedCandy?: CandyType;
-  automateState: [[number, number]] | null;
+  machine: [[number, number | string]] | null;
+  machineState: number;
   addCoin(coin: CoinType): void;
   buyCandy(candy: CandyType): void;
 }
@@ -56,7 +57,9 @@ export const WorkManagerProvider = ({
   const [selectedCandy, setSelectedCandy] = useState<CandyType>();
 
   const [machineState, setMachineState] = useState(0);
-  const [machine, setMachine] = useState<[[number, number]] | null>(null);
+  const [machine, setMachine] = useState<[[number, number | string]] | null>(
+    null
+  );
 
   const addCoin = (coin: CoinType) => {
     const totalAmount = amount + CoinsValue[coin];
@@ -69,6 +72,8 @@ export const WorkManagerProvider = ({
     setIsBuying(true);
 
     const totalAmount = amount - CandiesPrice[candy];
+
+    addCandyToAutomate(candy, totalAmount);
 
     setDiscount(totalAmount);
     setIsDiscountVisible(true);
@@ -89,6 +94,12 @@ export const WorkManagerProvider = ({
 
     setMachineState(resultValue);
     setMachine(defaultMachine);
+  };
+
+  const addCandyToAutomate = (candy: CandyType, discount: number) => {
+    machine!.push([machineState, `${candy}-${discount}`]);
+    setMachine(machine);
+    setMachineState(0);
   };
 
   useEffect(() => {
@@ -127,8 +138,9 @@ export const WorkManagerProvider = ({
         selectedCandy,
         discount,
         isDiscountVisible,
-        automateState: machine,
+        machine,
         isBuying,
+        machineState,
         addCoin,
         buyCandy,
       }}

@@ -4,7 +4,7 @@
   max-width: 1024px;
 
   width: 50%;
-  min-height: 500px;
+  height: 500px;
 
   display: flex;
   flex-direction: column;
@@ -39,4 +39,15 @@
 
 .side-cat img {
   max-width: 150px;
+}
+
+.side-machine {
+  height: 30%;
+  overflow: auto;
+
+  border-top: 8px solid gray;
+}
+
+.side-state, .side-transitions {
+  padding: var(--main-padding);
 }

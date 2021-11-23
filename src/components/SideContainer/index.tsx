@@ -14,7 +14,7 @@ interface SideContainerProps {
 export const SideContainer = ({
   children,
 }: SideContainerProps): JSX.Element => {
-  const { amount, automateState } = useContext(WorkManagerContext);
+  const { amount, machineState, machine } = useContext(WorkManagerContext);
 
   const getCatToRender = () => {
     if (amount <= 5) {
@@ -34,7 +34,23 @@ export const SideContainer = ({
       <div className="side-cat">
         <img src={getCatToRender()} alt="Cat" width="100%" />
       </div>
-      <div>{JSON.stringify(automateState)}</div>
+      <div className="side-machine">
+        <div className="side-state">Estado: q{machineState || "0"}</div>
+        <div className="side-transitions">
+          Transições:{" "}
+          {machine &&
+            machine
+              ?.map((el) => {
+                const [state, value] = el;
+
+                const resultValue =
+                  typeof value === "string" ? value : `q${value}`;
+
+                return `q${state} => ${resultValue}`;
+              })
+              .join(" | ")}
+        </div>
+      </div>
     </div>
   );
 };

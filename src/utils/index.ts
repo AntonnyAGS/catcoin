@@ -14,13 +14,13 @@ export const CoinsValue: Record<CoinType, number> = {
 };
 
 export const CandiesLabel: Record<CandyType, string> = {
-  [CandyType.CandyA]: "A",
-  [CandyType.CandyB]: "B",
-  [CandyType.CandyC]: "C",
+  [CandyType.A]: "A",
+  [CandyType.B]: "B",
+  [CandyType.C]: "C",
 };
 
 export const CandiesPrice: Record<CandyType, number> = {
-  [CandyType.CandyA]: 6,
-  [CandyType.CandyB]: 7,
-  [CandyType.CandyC]: 8,
+  [CandyType.A]: 6,
+  [CandyType.B]: 7,
+  [CandyType.C]: 8,
 };

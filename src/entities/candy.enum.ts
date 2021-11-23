@@ -1,5 +1,5 @@
 export enum CandyType {
-  CandyA = 'CandyA', 
-  CandyB = 'CandyB', 
-  CandyC = 'CandyC', 
+  A = 'A', 
+  B = 'B', 
+  C = 'C', 
 }
