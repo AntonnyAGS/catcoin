@@ -1,18 +1,40 @@
-import React, {
-  createContext,
-  useEffect,
-  useState,
-} from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { CandyType } from "../entities/candy.enum";
 import { CoinType } from "../entities/coin.enum";
 import { CandiesPrice, CoinsValue } from "../utils";
 
+const MACHINE_MAX_VALUE = 9;
+
+// const STATES = [
+//   [1, 2, 5, null, null, null],
+//   [2, 3, 6, ]
+// ]
+
+// const STATES: Record<string, string | number> = {
+//   '0,1': 1,
+//   '0,2': 2,
+//   '0,5': 5,
+//   '0,A': 0,
+//   '0,B': 0,
+//   '0,C': 0,
+
+//   '1,1': 2,
+//   '1,2': 3,
+//   '1, 5': 6,
+//   '1, A': 1,
+//   '1, B': 1,
+//   '1, C': 1,
+
+//   '2, 1': 3,
+//   '':
+// }
 interface WorkManagerContextProps {
   amount: number;
   discount: number;
   isDiscountVisible: boolean;
   isBuying: boolean;
   selectedCandy?: CandyType;
+  automateState: [[number, number]] | null;
   addCoin(coin: CoinType): void;
   buyCandy(candy: CandyType): void;
 }
@@ -33,9 +55,12 @@ export const WorkManagerProvider = ({
   const [isBuying, setIsBuying] = useState(false);
   const [selectedCandy, setSelectedCandy] = useState<CandyType>();
 
+  const [machineState, setMachineState] = useState(0);
+  const [machine, setMachine] = useState<[[number, number]] | null>(null);
+
   const addCoin = (coin: CoinType) => {
     const totalAmount = amount + CoinsValue[coin];
-
+    addCoinToAutomateState(coin);
     setAmount(totalAmount);
   };
 
@@ -50,14 +75,32 @@ export const WorkManagerProvider = ({
     setAmount(0);
   };
 
+  const addCoinToAutomateState = (coin: CoinType) => {
+    const value = CoinsValue[coin] + amount;
 
-  useEffect(() => {
-    if(selectedCandy) {
-      document.getElementById(`candy-${selectedCandy}`)?.classList.remove('animate__fadeIn');
-      document.getElementById(`candy-${selectedCandy}`)?.classList.add('animate__fadeOutDown');
+    const resultValue = value >= MACHINE_MAX_VALUE ? MACHINE_MAX_VALUE : value;
+
+    const defaultMachine = machine || ([[]] as unknown as [[number, number]]);
+    defaultMachine.push([machineState, resultValue]);
+
+    if (!machine) {
+      defaultMachine.splice(0, 1);
     }
 
-  }, [selectedCandy])
+    setMachineState(resultValue);
+    setMachine(defaultMachine);
+  };
+
+  useEffect(() => {
+    if (selectedCandy) {
+      document
+        .getElementById(`candy-${selectedCandy}`)
+        ?.classList.remove("animate__fadeIn");
+      document
+        .getElementById(`candy-${selectedCandy}`)
+        ?.classList.add("animate__fadeOutDown");
+    }
+  }, [selectedCandy]);
 
   useEffect(() => {
     if (!isDiscountVisible) {
@@ -67,8 +110,12 @@ export const WorkManagerProvider = ({
     setTimeout(() => {
       setIsDiscountVisible(false);
       setIsBuying(false);
-      document.getElementById(`candy-${selectedCandy}`)?.classList.remove('animate__fadeOutDown');
-      document.getElementById(`candy-${selectedCandy}`)?.classList.add('animate__fadeIn');
+      document
+        .getElementById(`candy-${selectedCandy}`)
+        ?.classList.remove("animate__fadeOutDown");
+      document
+        .getElementById(`candy-${selectedCandy}`)
+        ?.classList.add("animate__fadeIn");
       setSelectedCandy(undefined);
     }, 3000);
   }, [isDiscountVisible, selectedCandy]);
@@ -76,13 +123,14 @@ export const WorkManagerProvider = ({
   return (
     <WorkManagerContext.Provider
       value={{
-        addCoin,
         amount,
-        buyCandy,
         selectedCandy,
         discount,
         isDiscountVisible,
+        automateState: machine,
         isBuying,
+        addCoin,
+        buyCandy,
       }}
     >
       {children}

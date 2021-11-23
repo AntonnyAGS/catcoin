@@ -14,7 +14,7 @@ interface SideContainerProps {
 export const SideContainer = ({
   children,
 }: SideContainerProps): JSX.Element => {
-  const { amount } = useContext(WorkManagerContext);
+  const { amount, automateState } = useContext(WorkManagerContext);
 
   const getCatToRender = () => {
     if (amount <= 5) {
@@ -34,6 +34,7 @@ export const SideContainer = ({
       <div className="side-cat">
         <img src={getCatToRender()} alt="Cat" width="100%" />
       </div>
+      <div>{JSON.stringify(automateState)}</div>
     </div>
   );
 };
